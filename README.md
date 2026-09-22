@@ -1,6 +1,6 @@
 # Calendar
 
-**Live:** raincal.netlify.app
+**Live:** https://raincal.netlify.app
 
 I know everyone vibecodes calendar apps but i couldn't find any that solves one particular problem i had: there's no way to convey free hours across a meaningful sort of time without extremely information-dense screenshots (often requiring scrolling on a phone) or lengthy text explainers.
 So i made a simple site that shows, for any D/W/M/Y resolution you need to know, where are the free spots.
