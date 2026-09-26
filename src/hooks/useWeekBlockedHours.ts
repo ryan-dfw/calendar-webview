@@ -22,7 +22,7 @@ export function useWeekBlockedHours(days: Date[]) {
         if (requestId.current === id) setBlocked(grid);
       })
       .catch((err) => {
-        console.error("raincal: failed to load calendar data", err);
+        console.error("calendar-webview: failed to load calendar data", err);
       })
       .finally(() => {
         if (requestId.current === id) setLoading(false);

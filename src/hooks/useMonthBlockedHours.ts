@@ -27,7 +27,7 @@ export function useMonthBlockedHours(days: Date[]) {
         }
       })
       .catch((err) => {
-        console.error("raincal: failed to load this month's calendar", err);
+        console.error("calendar-webview: failed to load this month's calendar", err);
       })
       .finally(() => {
         if (requestId.current === id) setLoading(false);

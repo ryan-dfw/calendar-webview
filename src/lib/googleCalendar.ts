@@ -48,7 +48,7 @@ export async function fetchBlockedHoursForDays(
   const grid = emptyGrid(days.length);
 
   if (!API_KEY || !CALENDAR_ID) {
-    console.warn("raincal: missing VITE_GOOGLE_API_KEY / VITE_GOOGLE_CALENDAR_ID; showing an empty range.");
+    console.warn("calendar-webview: missing VITE_GOOGLE_API_KEY / VITE_GOOGLE_CALENDAR_ID; showing an empty range.");
     return grid;
   }
   if (days.length === 0) return grid;
