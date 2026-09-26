@@ -1,78 +1,35 @@
-# Calendar
+<p>
+  <img src="screenshot/weekview.png" width="32%" alt="Week view">
+  <img src="screenshot/monthview.png" width="32%" alt="Month view">
+  <img src="screenshot/yearview.png" width="32%" alt="Year view">
+</p>
 
 **Live:** https://raincal.netlify.app
 
-I know everyone vibecodes calendar apps but i couldn't find any that solves one particular problem i had: there's no way to convey free hours across a meaningful sort of time without extremely information-dense screenshots (often requiring scrolling on a phone) or lengthy text explainers.
-So i made a simple site that shows, for any D/W/M/Y resolution you need to know, where are the free spots.
 
-## How it works
+No other calendar app i found solved this particular problem, so i made one.
 
-Calendar uses Google Calendar's free/busy data rather than retrieving full calendar events and removing their details afterward.
+### Details
 
-That distinction is intentional. Event names, descriptions, and locations aren't necessary to answer when I'm available, so the application doesn't request them in the first place.
+Calendar keeps each view inside the viewport so a single screenshot can communicate all relevant availability.
 
-The resulting availability data is transformed into increasingly detailed views:
+There are three main views:
 
-1. **Year** — shows the overall shape of availability across months.
-2. **Month** — narrows the decision to a particular part of the month.
-3. **Week** — exposes hour-level availability for actually choosing a time.
-4. **Day** — provides a single-day view for completeness.
+- **Week** - hour-level availability across seven days.
 
-The goal is to preserve useful visual information as the calendar zooms outward without turning the interface into a long scrolling list.
+- **Month** - shows the shape of free and busy time across several weeks.
 
-## Stack
+- **Year** - shows broader availability patterns across months.
 
-- TypeScript
-- Google Calendar API
-- Netlify
+There's also a day view because making a calendar app without one would feel wrong.
 
-## Design goals
+Note that the current week view is the site's default presentation.
+Navigating to another or seeking future dates encodes those params in a simple query string, making any view as sharable by link as by screenshot.
 
-### Share availability, not events
+eg, `/?m&2610` takes us to a month view of October 2026, `/?270104` to the week containing 2027's January 4th (as week view is the default), and `/?y&29` to the full year of 2029.
 
-The application is designed around the information another person actually needs to schedule something with me.
+All data in this case comes from my google calendar, exposing free/busy status, and none else, over API.
 
-It exposes free/busy state without exposing:
+This was a short project to fix a problem in my life, not intended as distributable software. If anyone likes the idea, a short refactor could add a settings page + firebase realtime db, creating a simple reusable template.
 
-- event names
-- event descriptions
-- event locations
-- what I am doing during unavailable time
-
-This privacy boundary exists at the data source rather than as a presentation-layer redaction.
-
-### One-screen communication
-
-A major use case is taking a screenshot and sending it to someone.
-
-The interface therefore prioritizes keeping decision-relevant availability visible at once rather than requiring someone to navigate through a conventional calendar application.
-
-### Preserve shape across scales
-
-Most calendar interfaces become less useful when zoomed far out. Calendar instead tries to retain the visual shape of my available time as the view moves from weeks to months and a full year.
-
-The broad views aren't intended to identify an exact meeting time. They're intended to help narrow the search until the detailed week view becomes useful.
-
-## Why build it?
-
-I originally looked at adapting an existing scheduling project, but its scope was much larger than the problem I wanted to solve.
-
-I didn't need another calendar platform. I wanted a focused way to answer one question:
-
-**When am I free?**
-
-Building a smaller application also let the interaction model revolve around that question rather than adapting it to the assumptions of a general-purpose calendar.
-
-## Status
-
-The application is functional and includes day, week, month, and year views.
-
-The multiscale month/year-to-week interaction is the main idea of the project. The day view exists primarily for completeness.
-
-## AI assistance
-
-Claude handled the visual design and CSS.
-
-I implemented the calendar behavior, availability logic, Google Calendar integration, and the multiscale interaction model.
-
-ChatGPT wrote this readme save for this note. If you see this, i'm currently batch-cleaning my github aiming for a 'good enough' first pass, and have not yet been back for a real rewrite.
+#### TypeScript · React · Vite · Google Calendar API · Netlify
