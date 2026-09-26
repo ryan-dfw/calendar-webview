@@ -4,7 +4,7 @@
   <img src="screenshot/yearview.png" width="32%" alt="Year view">
 </p>
 
-**Live:** https://raincal.netlify.app
+**Live:** https://rdfwcal.netlify.app
 
 
 No other calendar app i found solved this particular problem, so i made one.
